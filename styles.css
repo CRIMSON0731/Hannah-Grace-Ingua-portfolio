@@ -476,34 +476,113 @@ body {
     color: var(--ink-secondary);
 }
 
-/* --- MOBILE RESPONSIVE --- */
+/* --- MOBILE RESPONSIVE (UPDATED) --- */
 @media (max-width: 768px) {
-    .story-content { grid-template-columns: 1fr; }
-    .story-image-col { order: -1; margin-bottom: 20px; }
-    .news-grid { grid-template-columns: 1fr; }
+    /* 1. Make the paper fill more of the screen */
+    body {
+        padding: 0;
+        background-color: var(--bg-paper); /* Seamless look on mobile */
+    }
+    
+    .paper-container {
+        padding: 20px 20px; /* Reduce padding so text has room */
+        box-shadow: none; /* Flat look for mobile is cleaner */
+        width: 100%;
+    }
+
+    /* 2. Shrink the massive Newspaper Title */
+    .newspaper-title {
+        font-size: 3rem; /* Reduced from 5rem to fit screen */
+        line-height: 1;
+        margin: 15px 0;
+    }
+
+    .masthead-meta {
+        font-size: 0.7rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* 3. Stack the Navigation Links */
+    .news-nav {
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 20px;
+    }
+
+    /* 4. Fix the Main Story Layout (Image on top) */
+    .story-content { 
+        grid-template-columns: 1fr; /* Single column */
+        gap: 20px;
+    }
+
+    .story-image-col { 
+        order: -1; /* Moves image to the top */
+        margin-bottom: 10px; 
+    }
+
+    .headline {
+        font-size: 2rem; /* Smaller headline */
+    }
+
+    /* 5. Switch to Left Align text on mobile (Justify looks bad on thin screens) */
+    .story-column {
+        text-align: left; 
+    }
+
+    /* 6. Selected Works: Stack them with dashed lines */
+    .news-grid { 
+        grid-template-columns: 1fr; 
+    }
+
     .news-item {
         border-right: none;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px dashed var(--border-color); /* Vintage dash style */
         padding-right: 0;
         padding-bottom: 20px;
         margin-bottom: 20px;
     }
-    .author-layout { grid-template-columns: 1fr; text-align: center; }
-    .author-text { text-align: left; }
+    
+    .news-item:last-child {
+        border-bottom: none;
+    }
+
+    /* 7. About Section adjustments */
+    .author-layout { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+    }
+    
+    .author-text { 
+        text-align: left; 
+    }
+    
     .author-stats-header {
         flex-direction: column;
         gap: 5px;
         text-align: center;
+        border-bottom: 1px dashed var(--border-color);
     }
-    .author-stats-header li:not(:last-child)::after { content: ""; }
-    .connect-links-box { flex-direction: column; gap: 15px; }
+    
+    .author-stats-header li:not(:last-child)::after { 
+        content: ""; /* Remove dividers in stack mode */
+    }
+
+    /* 8. Connect Section */
+    .connect-links-box { 
+        flex-direction: column; 
+        gap: 15px; 
+    }
     .separator { display: none; }
     
-    /* Move toggle button for mobile */
+    /* 9. Fix Toggle Button Position */
     .theme-toggle-btn {
-        top: 10px;
-        right: 10px;
-        padding: 5px 8px;
-        font-size: 0.7rem;
+        position: relative; /* Move it inside the flow or keep absolute */
+        top: 0;
+        right: 0;
+        margin: 0 auto 20px;
+        display: block;
+        width: fit-content;
     }
 }
